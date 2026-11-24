@@ -4,6 +4,7 @@ import { Menu, X, ArrowUpRight, Phone, MessageSquare } from 'lucide-react';
 import { EdufinixLogo } from '../brand/EdufinixLogo';
 import { BRAND_INFO } from '../../data/brand';
 import { ThemeSwitcher } from '../common/ThemeSwitcher';
+import { MarketTicker } from '../common/MarketTicker';
 
 const NAV_LINKS = [
   { name: 'Home', path: '/' },
@@ -50,75 +51,81 @@ export const Navbar: React.FC = () => {
 
   return (
     <>
-      <header
-        className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
-          isScrolled
-            ? 'bg-porcelain-subtle/95 backdrop-blur-md border-b border-[#101C32]/10 shadow-xs py-3.5'
-            : 'bg-porcelain-subtle border-b border-[#101C32]/5 py-5'
-        }`}
-      >
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="flex items-center justify-between">
-            {/* Brand Logo */}
-            <EdufinixLogo variant="dark" size="md" />
+      <header className="fixed top-0 left-0 right-0 z-50 transition-all duration-300">
+        {/* Pinned Real-Time Financial Ticker Bar */}
+        <MarketTicker />
 
-            {/* Desktop Navigation Links */}
-            <nav className="hidden md:flex items-center gap-1 lg:gap-2">
-              {NAV_LINKS.map((link) => (
-                <NavLink
-                  key={link.path}
-                  to={link.path}
-                  className={({ isActive }) =>
-                    `px-3.5 py-1.5 rounded-md text-sm font-body font-medium transition-colors duration-150 ${
-                      isActive
-                        ? 'text-[#315FEA] font-semibold bg-[#315FEA]/5'
-                        : 'text-[#17263D] hover:text-[#315FEA] hover:bg-[#101C32]/5'
-                    }`
-                  }
+        {/* Main Navbar */}
+        <div
+          className={`transition-all duration-300 ${
+            isScrolled
+              ? 'bg-porcelain-subtle/95 backdrop-blur-md border-b border-[#101C32]/10 shadow-xs py-3'
+              : 'bg-porcelain-subtle/90 backdrop-blur-xs border-b border-[#101C32]/5 py-4'
+          }`}
+        >
+          <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div className="flex items-center justify-between">
+              {/* Brand Logo */}
+              <EdufinixLogo variant="dark" size="md" />
+
+              {/* Desktop Navigation Links */}
+              <nav className="hidden md:flex items-center gap-1 lg:gap-2">
+                {NAV_LINKS.map((link) => (
+                  <NavLink
+                    key={link.path}
+                    to={link.path}
+                    className={({ isActive }) =>
+                      `px-3.5 py-1.5 rounded-lg text-sm font-body font-medium transition-all duration-200 relative ${
+                        isActive
+                          ? 'text-[#315FEA] font-semibold bg-[#315FEA]/10'
+                          : 'text-[#17263D] hover:text-[#315FEA] hover:bg-[#101C32]/5'
+                      }`
+                    }
+                  >
+                    {link.name}
+                  </NavLink>
+                ))}
+              </nav>
+
+              {/* Header Right Action, Theme Switcher & Enquire CTA */}
+              <div className="hidden md:flex items-center gap-2.5">
+                {/* Palette / Theme Switcher */}
+                <ThemeSwitcher variant="navbar" />
+
+                {/* WhatsApp Quick Link */}
+                <a
+                  href={BRAND_INFO.contact.whatsappUrl}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="inline-flex items-center gap-1.5 px-3 py-1.5 text-xs font-mono font-medium text-[#101C32] hover:text-[#315FEA] border border-[#101C32]/15 rounded-md hover:border-[#315FEA]/50 transition-colors shadow-2xs"
+                  title="Direct WhatsApp Admissions Desk"
                 >
-                  {link.name}
-                </NavLink>
-              ))}
-            </nav>
+                  <MessageSquare className="w-3.5 h-3.5 text-[#25D366]" />
+                  <span>WhatsApp</span>
+                </a>
 
-            {/* Header Right Action, Theme Switcher & Enquire CTA */}
-            <div className="hidden md:flex items-center gap-2.5">
-              {/* Palette / Theme Switcher */}
-              <ThemeSwitcher variant="navbar" />
+                {/* Primary Enquire Now CTA */}
+                <Link
+                  to="/contact"
+                  className="inline-flex items-center gap-1.5 px-4 py-2 rounded-lg text-xs font-body font-semibold uppercase tracking-wider text-white bg-[#101C32] hover:bg-[#17263D] active:bg-[#0c1524] transition-all shadow-xs group"
+                >
+                  <span>Enquire Now</span>
+                  <ArrowUpRight className="w-3.5 h-3.5 transition-transform duration-200 group-hover:translate-x-0.5 group-hover:-translate-y-0.5" />
+                </Link>
+              </div>
 
-              {/* WhatsApp Quick Link */}
-              <a
-                href={BRAND_INFO.contact.whatsappUrl}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="inline-flex items-center gap-1.5 px-3 py-1.5 text-xs font-mono font-medium text-[#101C32] hover:text-[#315FEA] border border-[#101C32]/15 rounded-md hover:border-[#315FEA]/50 transition-colors"
-                title="Direct WhatsApp Admissions Desk"
-              >
-                <MessageSquare className="w-3.5 h-3.5 text-[#25D366]" />
-                <span>WhatsApp</span>
-              </a>
-
-              {/* Primary Enquire Now CTA */}
-              <Link
-                to="/contact"
-                className="inline-flex items-center gap-1.5 px-4 py-2 rounded-lg text-xs font-body font-semibold uppercase tracking-wider text-white bg-[#101C32] hover:bg-[#17263D] active:bg-[#0c1524] transition-all shadow-xs group"
-              >
-                <span>Enquire Now</span>
-                <ArrowUpRight className="w-3.5 h-3.5 transition-transform duration-200 group-hover:translate-x-0.5 group-hover:-translate-y-0.5" />
-              </Link>
-            </div>
-
-            {/* Mobile Hamburger & Quick Theme */}
-            <div className="flex md:hidden items-center gap-2">
-              <ThemeSwitcher variant="navbar" />
-              <button
-                type="button"
-                onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
-                className="p-2 rounded-lg border border-[#101C32]/15 text-[#101C32] hover:bg-[#101C32]/5 focus:outline-none focus:ring-2 focus:ring-[#315FEA]"
-                aria-label={mobileMenuOpen ? 'Close Menu' : 'Open Menu'}
-              >
-                {mobileMenuOpen ? <X className="w-5 h-5" /> : <Menu className="w-5 h-5" />}
-              </button>
+              {/* Mobile Hamburger & Quick Theme */}
+              <div className="flex md:hidden items-center gap-2">
+                <ThemeSwitcher variant="navbar" />
+                <button
+                  type="button"
+                  onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
+                  className="p-2 rounded-lg border border-[#101C32]/15 text-[#101C32] hover:bg-[#101C32]/5 focus:outline-none focus:ring-2 focus:ring-[#315FEA]"
+                  aria-label={mobileMenuOpen ? 'Close Menu' : 'Open Menu'}
+                >
+                  {mobileMenuOpen ? <X className="w-5 h-5" /> : <Menu className="w-5 h-5" />}
+                </button>
+              </div>
             </div>
           </div>
         </div>
@@ -126,7 +133,7 @@ export const Navbar: React.FC = () => {
 
       {/* Mobile Navigation Drawer */}
       {mobileMenuOpen && (
-        <div className="fixed inset-0 z-40 md:hidden flex flex-col pt-24 pb-8 px-6 overflow-y-auto animate-in fade-in duration-200 bg-porcelain-subtle">
+        <div className="fixed inset-0 z-40 md:hidden flex flex-col pt-28 pb-8 px-6 overflow-y-auto bg-porcelain-subtle">
           <div className="flex flex-col gap-2">
             <span className="text-[11px] font-mono uppercase tracking-[0.2em] text-[#778397] mb-2">
               Navigation
@@ -175,7 +182,7 @@ export const Navbar: React.FC = () => {
               <span>Enquire About Admission</span>
               <ArrowUpRight className="w-4 h-4" />
             </Link>
-            
+
             <a
               href={BRAND_INFO.contact.whatsappUrl}
               target="_blank"

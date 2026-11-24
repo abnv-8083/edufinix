@@ -14,7 +14,7 @@ export const MainLayout: React.FC<MainLayoutProps> = ({ children }) => {
     <div className="flex flex-col min-h-screen bg-[#F5F4EF] text-[#101C32] transition-colors duration-300">
       <ScrollToTop />
       <Navbar />
-      <main className="flex-grow pt-20">
+      <main className="flex-grow pt-28 sm:pt-32">
         {children}
       </main>
       <Footer />

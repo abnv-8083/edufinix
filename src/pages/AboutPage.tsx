@@ -30,6 +30,30 @@ export const AboutPage: React.FC = () => {
             <p className="font-body text-base sm:text-lg lg:text-xl text-[#778397] leading-relaxed">
               Edufinix Trading Academy is a skill-oriented financial education institute dedicated to practical Forex market training, technical analysis, risk management and market strategies in Kozhikode, Kerala.
             </p>
+
+            {/* Institutional Numbers Banner */}
+            <div className="pt-6 sm:pt-8 grid grid-cols-2 md:grid-cols-4 gap-3 sm:gap-4">
+              <div className="p-4 rounded-xl bg-white border border-[#101C32]/10 shadow-2xs interactive-card">
+                <span className="font-mono text-2xl sm:text-3xl font-bold text-[#315FEA] block">100%</span>
+                <span className="font-heading text-xs font-semibold text-[#101C32] block mt-0.5">Offline Practical Focus</span>
+                <span className="font-body text-[11px] text-[#778397] block">In-person classes in Kozhikode</span>
+              </div>
+              <div className="p-4 rounded-xl bg-white border border-[#101C32]/10 shadow-2xs interactive-card">
+                <span className="font-mono text-2xl sm:text-3xl font-bold text-[#101C32] block">04</span>
+                <span className="font-heading text-xs font-semibold text-[#101C32] block mt-0.5">Core Syllabus Modules</span>
+                <span className="font-body text-[11px] text-[#778397] block">Foundations to Psychology</span>
+              </div>
+              <div className="p-4 rounded-xl bg-white border border-[#101C32]/10 shadow-2xs interactive-card">
+                <span className="font-mono text-2xl sm:text-3xl font-bold text-[#315FEA] block">24/7</span>
+                <span className="font-heading text-xs font-semibold text-[#101C32] block mt-0.5">Lifelong Mentorship</span>
+                <span className="font-body text-[11px] text-[#778397] block">Continuous trade reviews</span>
+              </div>
+              <div className="p-4 rounded-xl bg-white border border-[#101C32]/10 shadow-2xs interactive-card">
+                <span className="font-mono text-2xl sm:text-3xl font-bold text-[#101C32] block">02-Day</span>
+                <span className="font-heading text-xs font-semibold text-[#101C32] block mt-0.5">Resort Market Escape</span>
+                <span className="font-body text-[11px] text-[#778397] block">Mindset &amp; camping retreat</span>
+              </div>
+            </div>
           </div>
         </div>
       </section>

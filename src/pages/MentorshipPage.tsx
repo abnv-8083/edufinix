@@ -49,7 +49,7 @@ export const MentorshipPage: React.FC = () => {
           <div className="grid grid-cols-1 lg:grid-cols-3 gap-6 sm:gap-8">
             
             {/* Pillar 1: Live Market Learning */}
-            <div className="p-6 sm:p-8 rounded-2xl bg-[#F5F4EF] border border-[#101C32]/10 flex flex-col justify-between space-y-5 sm:space-y-6">
+            <div className="p-6 sm:p-8 rounded-2xl bg-[#F5F4EF] border border-[#101C32]/10 flex flex-col justify-between space-y-5 sm:space-y-6 interactive-card shadow-2xs">
               <div className="space-y-3.5 sm:space-y-4">
                 <div className="flex items-center justify-between">
                   <div className="p-2.5 rounded-xl bg-[#315FEA]/10 text-[#315FEA]">
@@ -88,7 +88,7 @@ export const MentorshipPage: React.FC = () => {
             </div>
 
             {/* Pillar 2: Continuous Support */}
-            <div className="p-6 sm:p-8 rounded-2xl bg-[#101C32] text-white border border-[#17263D] shadow-xl flex flex-col justify-between space-y-5 sm:space-y-6">
+            <div className="p-6 sm:p-8 rounded-2xl bg-[#0D1728] text-white border border-[#1E2E48] shadow-xl flex flex-col justify-between space-y-5 sm:space-y-6 interactive-card-dark">
               <div className="space-y-3.5 sm:space-y-4">
                 <div className="flex items-center justify-between">
                   <div className="p-2.5 rounded-xl bg-[#315FEA] text-white">
@@ -127,7 +127,7 @@ export const MentorshipPage: React.FC = () => {
             </div>
 
             {/* Pillar 3: Community */}
-            <div className="p-6 sm:p-8 rounded-2xl bg-[#F5F4EF] border border-[#101C32]/10 flex flex-col justify-between space-y-5 sm:space-y-6">
+            <div className="p-6 sm:p-8 rounded-2xl bg-[#F5F4EF] border border-[#101C32]/10 flex flex-col justify-between space-y-5 sm:space-y-6 interactive-card shadow-2xs">
               <div className="space-y-3.5 sm:space-y-4">
                 <div className="flex items-center justify-between">
                   <div className="p-2.5 rounded-xl bg-[#315FEA]/10 text-[#315FEA]">

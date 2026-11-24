@@ -1,10 +1,10 @@
 import React from 'react';
 import { SectionHeader } from '../../components/common/SectionHeader';
-import { CheckCircle2, ShieldAlert, Sparkles, MessageCircle, Users, Activity, BarChart3, HelpCircle } from 'lucide-react';
+import { ShieldAlert, Sparkles, MessageCircle, Users, Activity, BarChart3, HelpCircle } from 'lucide-react';
 
 export const WhyEdufinixSection: React.FC = () => {
   return (
-    <section className="py-14 sm:py-20 lg:py-28 bg-[#F5F4EF] border-b border-[#101C32]/10">
+    <section className="py-14 sm:py-20 lg:py-28 bg-[#F5F4EF] border-b border-[#101C32]/10 relative">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         {/* Section Header */}
         <div className="flex flex-col md:flex-row md:items-end justify-between gap-6 pb-10 sm:pb-14 border-b border-[#101C32]/10">
@@ -12,7 +12,7 @@ export const WhyEdufinixSection: React.FC = () => {
             index="02"
             tagline="Why Edufinix"
             title="Engineered for Practical Market Competence."
-            description="Our institutional curriculum and support structure are designed around real-time market observation, individual discipline, and lifelong mentorship."
+            description="Our institutional curriculum and support structure are designed around real-time market observation, individual discipline, and lifelong mentorship in Kozhikode."
           />
           <div className="hidden md:block text-right">
             <span className="font-mono text-xs text-[#778397] block">ADMISSIONS CRITERIA</span>
@@ -22,11 +22,10 @@ export const WhyEdufinixSection: React.FC = () => {
 
         {/* Asymmetric Editorial Grid */}
         <div className="grid grid-cols-1 md:grid-cols-12 gap-5 sm:gap-6 pt-8 sm:pt-10">
-          
-          {/* Feature 01 & 02: Wide Leading Spread — Live Trading & Real-Time Q&A */}
-          <div className="md:col-span-12 lg:col-span-8 p-6 sm:p-8 lg:p-10 rounded-2xl bg-white border border-[#101C32]/10 shadow-xs relative overflow-hidden">
+          {/* Feature 01 & 02: Wide Leading Spread */}
+          <div className="md:col-span-12 lg:col-span-8 p-6 sm:p-8 lg:p-10 rounded-2xl sm:rounded-3xl bg-white border border-[#101C32]/10 shadow-sm relative overflow-hidden interactive-card">
             <div className="flex flex-wrap items-center justify-between gap-3 mb-6 sm:mb-8">
-              <span className="font-mono text-xs font-semibold px-2.5 py-1 rounded bg-[#315FEA]/10 text-[#315FEA]">
+              <span className="font-mono text-xs font-semibold px-3 py-1 rounded-full bg-[#315FEA]/10 text-[#315FEA]">
                 REAL-TIME EXECUTION
               </span>
               <span className="font-mono text-xs text-[#778397]">
@@ -36,10 +35,12 @@ export const WhyEdufinixSection: React.FC = () => {
 
             <div className="grid grid-cols-1 md:grid-cols-2 gap-6 sm:gap-8">
               {/* 01. Live Trading Sessions */}
-              <div className="space-y-2.5 sm:space-y-3">
+              <div className="space-y-3">
                 <div className="flex items-center gap-2">
                   <span className="font-mono text-xl sm:text-2xl font-bold text-[#101C32]">01.</span>
-                  <Activity className="w-5 h-5 text-[#315FEA]" />
+                  <div className="p-2 rounded-lg bg-[#315FEA]/10 text-[#315FEA]">
+                    <Activity className="w-5 h-5" />
+                  </div>
                 </div>
                 <h3 className="font-heading text-lg sm:text-xl font-bold text-[#101C32]">
                   Live Trading Sessions
@@ -50,10 +51,12 @@ export const WhyEdufinixSection: React.FC = () => {
               </div>
 
               {/* 02. Live Q&A Sessions */}
-              <div className="space-y-2.5 sm:space-y-3">
+              <div className="space-y-3">
                 <div className="flex items-center gap-2">
                   <span className="font-mono text-xl sm:text-2xl font-bold text-[#101C32]">02.</span>
-                  <HelpCircle className="w-5 h-5 text-[#315FEA]" />
+                  <div className="p-2 rounded-lg bg-[#315FEA]/10 text-[#315FEA]">
+                    <HelpCircle className="w-5 h-5" />
+                  </div>
                 </div>
                 <h3 className="font-heading text-lg sm:text-xl font-bold text-[#101C32]">
                   Live Q&amp;A Sessions
@@ -64,17 +67,30 @@ export const WhyEdufinixSection: React.FC = () => {
               </div>
             </div>
 
-            <div className="mt-6 sm:mt-8 pt-5 sm:pt-6 border-t border-[#101C32]/10 flex flex-col sm:flex-row sm:items-center justify-between gap-2.5 text-xs text-[#778397]">
-              <span className="font-mono text-[11px] sm:text-xs">SESSIONS: 10 AM – 12 PM / 05 PM – 07 PM</span>
-              <span className="font-medium text-[#101C32]">Active Market Days (Mon–Thu)</span>
+            <div className="mt-8 pt-6 border-t border-[#101C32]/10 flex flex-col sm:flex-row sm:items-center justify-between gap-2.5 text-xs text-[#778397]">
+              <span className="font-mono text-[11px] sm:text-xs">
+                SESSIONS: 10 AM – 12 PM / 05 PM – 07 PM
+              </span>
+              <span className="font-medium text-[#101C32] flex items-center gap-1.5">
+                <span className="w-2 h-2 rounded-full bg-[#25D366]" />
+                Active Market Days (Mon–Thu)
+              </span>
             </div>
           </div>
 
-          {/* Feature 03 & 07: Dark Impact Tile — Continuous & Lifelong Mentor Support */}
-          <div className="md:col-span-12 lg:col-span-4 p-6 sm:p-8 lg:p-10 rounded-2xl bg-[#101C32] text-white border border-[#17263D] shadow-xl flex flex-col justify-between">
-            <div className="space-y-5 sm:space-y-6">
+          {/* Feature 03 & 07: Dark Impact Tile */}
+          <div className="md:col-span-12 lg:col-span-4 p-6 sm:p-8 lg:p-10 rounded-2xl sm:rounded-3xl bg-[#0D1728] text-white border border-[#1E2E48] shadow-xl flex flex-col justify-between interactive-card-dark relative overflow-hidden">
+            {/* Background subtle radial glow */}
+            <div
+              className="absolute -top-12 -right-12 w-48 h-48 rounded-full pointer-events-none opacity-20"
+              style={{
+                background: 'radial-gradient(circle, rgba(49, 95, 234, 0.8) 0%, transparent 70%)',
+              }}
+            />
+
+            <div className="space-y-6 relative z-10">
               <div className="flex items-center justify-between">
-                <span className="font-mono text-xs font-semibold px-2.5 py-1 rounded bg-[#315FEA] text-white">
+                <span className="font-mono text-xs font-semibold px-3 py-1 rounded-full bg-[#315FEA] text-white shadow-sm">
                   UNINTERRUPTED
                 </span>
                 <span className="font-mono text-xs text-[#DCE5F1]/50">
@@ -82,9 +98,11 @@ export const WhyEdufinixSection: React.FC = () => {
                 </span>
               </div>
 
-              <div className="space-y-2.5 sm:space-y-3">
+              <div className="space-y-3">
                 <div className="flex items-center gap-2">
-                  <MessageCircle className="w-5 h-5 text-[#315FEA]" />
+                  <div className="p-2 rounded-lg bg-white/10 text-[#315FEA]">
+                    <MessageCircle className="w-5 h-5" />
+                  </div>
                   <span className="font-mono text-xs text-[#DCE5F1]/70 uppercase tracking-widest">
                     Support Architecture
                   </span>
@@ -98,19 +116,19 @@ export const WhyEdufinixSection: React.FC = () => {
               </div>
             </div>
 
-            <div className="pt-6 sm:pt-8 mt-6 border-t border-[#DCE5F1]/15 text-xs font-mono text-[#DCE5F1]/60 flex items-center justify-between">
+            <div className="pt-8 mt-6 border-t border-[#DCE5F1]/15 text-xs font-mono text-[#DCE5F1]/60 flex items-center justify-between relative z-10">
               <span>Direct Instructor Access</span>
-              <span className="text-[#315FEA]">Lifelong Partnership</span>
+              <span className="text-[#315FEA] font-semibold">Lifelong Partnership</span>
             </div>
           </div>
 
           {/* Feature 04: Institutional Funded-Account Support */}
-          <div className="md:col-span-6 lg:col-span-4 p-6 sm:p-8 rounded-2xl bg-white border border-[#101C32]/10 shadow-xs flex flex-col justify-between">
-            <div className="space-y-3 sm:space-y-4">
+          <div className="md:col-span-6 lg:col-span-4 p-6 sm:p-8 rounded-2xl sm:rounded-3xl bg-white border border-[#101C32]/10 shadow-sm flex flex-col justify-between interactive-card">
+            <div className="space-y-4">
               <div className="flex items-center justify-between">
                 <span className="font-mono text-xl sm:text-2xl font-bold text-[#101C32]">04.</span>
-                <span className="w-8 h-8 rounded-lg bg-[#315FEA]/10 text-[#315FEA] flex items-center justify-center">
-                  <BarChart3 className="w-4 h-4" />
+                <span className="w-9 h-9 rounded-xl bg-[#315FEA]/10 text-[#315FEA] flex items-center justify-center">
+                  <BarChart3 className="w-5 h-5" />
                 </span>
               </div>
               <h3 className="font-heading text-base sm:text-lg font-bold text-[#101C32]">
@@ -121,21 +139,21 @@ export const WhyEdufinixSection: React.FC = () => {
               </p>
             </div>
 
-            <div className="mt-5 sm:mt-6 pt-4 border-t border-[#101C32]/10">
+            <div className="mt-6 pt-4 border-t border-[#101C32]/10">
               <div className="flex items-start gap-2 text-[11px] text-[#778397] leading-tight">
                 <ShieldAlert className="w-3.5 h-3.5 text-[#315FEA] shrink-0 mt-0.5" />
-                <span>Availability and eligibility are subject to academy terms and individual performance benchmarks.</span>
+                <span>Eligibility is subject to academy terms and individual performance benchmarks.</span>
               </div>
             </div>
           </div>
 
           {/* Feature 05: Signal Bot Access */}
-          <div className="md:col-span-6 lg:col-span-4 p-6 sm:p-8 rounded-2xl bg-white border border-[#101C32]/10 shadow-xs flex flex-col justify-between">
-            <div className="space-y-3 sm:space-y-4">
+          <div className="md:col-span-6 lg:col-span-4 p-6 sm:p-8 rounded-2xl sm:rounded-3xl bg-white border border-[#101C32]/10 shadow-sm flex flex-col justify-between interactive-card">
+            <div className="space-y-4">
               <div className="flex items-center justify-between">
                 <span className="font-mono text-xl sm:text-2xl font-bold text-[#101C32]">05.</span>
-                <span className="w-8 h-8 rounded-lg bg-[#315FEA]/10 text-[#315FEA] flex items-center justify-center">
-                  <Sparkles className="w-4 h-4" />
+                <span className="w-9 h-9 rounded-xl bg-[#315FEA]/10 text-[#315FEA] flex items-center justify-center">
+                  <Sparkles className="w-5 h-5" />
                 </span>
               </div>
               <h3 className="font-heading text-base sm:text-lg font-bold text-[#101C32]">
@@ -146,37 +164,36 @@ export const WhyEdufinixSection: React.FC = () => {
               </p>
             </div>
 
-            <div className="mt-5 sm:mt-6 pt-4 border-t border-[#101C32]/10">
+            <div className="mt-6 pt-4 border-t border-[#101C32]/10">
               <div className="flex items-start gap-2 text-[11px] text-[#778397] leading-tight">
-                <CheckCircle2 className="w-3.5 h-3.5 text-[#315FEA] shrink-0 mt-0.5" />
-                <span>Granted upon verified program completion subject to academy guidelines.</span>
+                <ShieldAlert className="w-3.5 h-3.5 text-[#315FEA] shrink-0 mt-0.5" />
+                <span>Analytical confirmation tool provided for educational verification after syllabus completion.</span>
               </div>
             </div>
           </div>
 
-          {/* Feature 06 & 08: Lifelong Community & Personalised Trading Strategy */}
-          <div className="md:col-span-12 lg:col-span-4 p-6 sm:p-8 rounded-2xl bg-[#DCE5F1]/30 border border-[#DCE5F1] shadow-xs flex flex-col justify-between">
-            <div className="space-y-3 sm:space-y-4">
+          {/* Feature 06: Community of Disciplined Traders */}
+          <div className="md:col-span-12 lg:col-span-4 p-6 sm:p-8 rounded-2xl sm:rounded-3xl bg-white border border-[#101C32]/10 shadow-sm flex flex-col justify-between interactive-card">
+            <div className="space-y-4">
               <div className="flex items-center justify-between">
-                <span className="font-mono text-xl sm:text-2xl font-bold text-[#101C32]">06 &amp; 08.</span>
-                <span className="w-8 h-8 rounded-lg bg-[#101C32] text-white flex items-center justify-center">
-                  <Users className="w-4 h-4" />
+                <span className="font-mono text-xl sm:text-2xl font-bold text-[#101C32]">06.</span>
+                <span className="w-9 h-9 rounded-xl bg-[#315FEA]/10 text-[#315FEA] flex items-center justify-center">
+                  <Users className="w-5 h-5" />
                 </span>
               </div>
               <h3 className="font-heading text-base sm:text-lg font-bold text-[#101C32]">
-                Community &amp; Personal Strategy
+                Community of Disciplined Traders
               </h3>
-              <p className="font-body text-xs sm:text-sm text-[#17263D] leading-relaxed">
-                Connect with an established network of disciplined traders in Kerala through regular meetups, while formulating a simplified personal trading plan tailored to your lifestyle.
+              <p className="font-body text-xs sm:text-sm text-[#778397] leading-relaxed">
+                Connect and exchange analytical frameworks with an active peer group of traders who share common discipline, risk protocols, and dedication.
               </p>
             </div>
 
-            <div className="mt-5 sm:mt-6 pt-4 border-t border-[#101C32]/10 flex items-center justify-between text-xs font-mono text-[#101C32]">
-              <span>Kozhikode Trader Network</span>
-              <span className="font-semibold text-[#315FEA]">Lifelong Access</span>
+            <div className="mt-6 pt-4 border-t border-[#101C32]/10 flex items-center justify-between text-xs font-mono text-[#778397]">
+              <span>Active Alumni Network</span>
+              <span className="text-[#315FEA] font-semibold">Kozhikode Cohort</span>
             </div>
           </div>
-
         </div>
       </div>
     </section>
