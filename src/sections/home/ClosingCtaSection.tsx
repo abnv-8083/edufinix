@@ -1,7 +1,8 @@
 import React from 'react';
 import { Button } from '../../components/common/Button';
 import { BRAND_INFO } from '../../data/brand';
-import { MessageSquare, Clock, MapPin } from 'lucide-react';
+import { Clock, MapPin } from 'lucide-react';
+import { WhatsAppIcon } from '../../components/common/Icons';
 
 export const ClosingCtaSection: React.FC = () => {
   return (
@@ -44,7 +45,7 @@ export const ClosingCtaSection: React.FC = () => {
                 rel="noopener noreferrer"
                 className="inline-flex items-center justify-center gap-2 px-6 py-3.5 rounded-lg bg-[#25D366] text-white text-sm font-body font-semibold hover:bg-[#1EBE5D] transition-colors shadow-sm w-full sm:w-auto"
               >
-                <MessageSquare className="w-4 h-4" />
+                <WhatsAppIcon className="w-4 h-4" />
                 <span>WhatsApp Enquiry</span>
               </a>
             </div>

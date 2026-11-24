@@ -1,8 +1,8 @@
 import React, { useState } from 'react';
 import { BRAND_INFO } from '../data/brand';
 import { FAQS } from '../data/faq';
-import { Phone, Mail, MapPin, Clock, MessageSquare, CheckCircle, AlertCircle, Send, ChevronDown, ChevronUp, Code2 } from 'lucide-react';
-import { InstagramIcon } from '../components/common/Icons';
+import { Phone, Mail, MapPin, Clock, CheckCircle, AlertCircle, Send, ChevronDown, ChevronUp, Code2 } from 'lucide-react';
+import { InstagramIcon, WhatsAppIcon } from '../components/common/Icons';
 import { usePageMetadata } from '../hooks/usePageMetadata';
 
 interface FormData {
@@ -234,7 +234,7 @@ export const ContactPage: React.FC = () => {
                 >
                   <div className="flex items-center gap-3 sm:gap-4 min-w-0">
                     <div className="p-2.5 sm:p-3 rounded-xl bg-white/20 text-white shrink-0">
-                      <MessageSquare className="w-5 h-5" />
+                      <WhatsAppIcon className="w-5 h-5" />
                     </div>
                     <div className="min-w-0">
                       <span className="text-[10px] sm:text-[11px] font-mono text-white/90 uppercase tracking-wider block">
@@ -342,7 +342,7 @@ export const ContactPage: React.FC = () => {
                         rel="noopener noreferrer"
                         className="w-full sm:w-auto px-5 sm:px-6 py-3 rounded-lg bg-[#25D366] text-white text-xs font-semibold uppercase tracking-wider inline-flex items-center justify-center gap-2 hover:bg-[#1EBE5D] transition-colors"
                       >
-                        <MessageSquare className="w-4 h-4" />
+                        <WhatsAppIcon className="w-4 h-4" />
                         <span>Confirm via WhatsApp Directly</span>
                       </a>
                       <button

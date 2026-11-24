@@ -1,10 +1,11 @@
 import React, { useState, useEffect } from 'react';
 import { NavLink, Link, useLocation } from 'react-router-dom';
-import { Menu, X, ArrowUpRight, Phone, MessageSquare } from 'lucide-react';
+import { Menu, X, ArrowUpRight, Phone } from 'lucide-react';
 import { EdufinixLogo } from '../brand/EdufinixLogo';
 import { BRAND_INFO } from '../../data/brand';
 import { ThemeSwitcher } from '../common/ThemeSwitcher';
 import { MarketTicker } from '../common/MarketTicker';
+import { WhatsAppIcon } from '../common/Icons';
 
 const NAV_LINKS = [
   { name: 'Home', path: '/' },
@@ -92,18 +93,6 @@ export const Navbar: React.FC = () => {
                 {/* Palette / Theme Switcher */}
                 <ThemeSwitcher variant="navbar" />
 
-                {/* WhatsApp Quick Link */}
-                <a
-                  href={BRAND_INFO.contact.whatsappUrl}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="inline-flex items-center gap-1.5 px-3 py-1.5 text-xs font-mono font-medium text-[#101C32] hover:text-[#315FEA] border border-[#101C32]/15 rounded-md hover:border-[#315FEA]/50 transition-colors shadow-2xs"
-                  title="Direct WhatsApp Admissions Desk"
-                >
-                  <MessageSquare className="w-3.5 h-3.5 text-[#25D366]" />
-                  <span>WhatsApp</span>
-                </a>
-
                 {/* Primary Enquire Now CTA */}
                 <Link
                   to="/contact"
@@ -187,9 +176,9 @@ export const Navbar: React.FC = () => {
               href={BRAND_INFO.contact.whatsappUrl}
               target="_blank"
               rel="noopener noreferrer"
-              className="w-full py-3 px-4 rounded-lg bg-[#25D366] text-white text-center font-body font-medium text-sm flex items-center justify-center gap-2"
+              className="w-full py-3 px-4 rounded-lg bg-[#25D366] text-white text-center font-body font-medium text-sm flex items-center justify-center gap-2 shadow-sm"
             >
-              <MessageSquare className="w-4 h-4" />
+              <WhatsAppIcon className="w-4 h-4" />
               <span>Message on WhatsApp (+91 6369-637566)</span>
             </a>
 
