@@ -1,5 +1,5 @@
 import React, { useRef } from 'react';
-import { Clock, ShieldCheck, MapPin } from 'lucide-react';
+import { Clock, ShieldCheck } from 'lucide-react';
 import { Button } from '../../components/common/Button';
 import { IMAGES } from '../../data/assets';
 import { MarketSessionTracker } from '../../components/common/MarketSessionTracker';
@@ -86,27 +86,6 @@ export const HeroSection: React.FC = () => {
       />
 
       <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        {/* Editorial Masthead Bar */}
-        <div className="flex flex-wrap items-center justify-between gap-3 pb-6 mb-8 sm:pb-8 sm:mb-10 border-b border-[#101C32]/12 text-[11px] sm:text-xs font-mono tracking-wider text-[#778397] uppercase">
-          <div className="flex items-center gap-2">
-            <span className="w-2 h-2 rounded-full bg-[#315FEA] animate-pulse" />
-            <span className="font-semibold text-[#101C32]">Edufinix Trading Academy</span>
-            <span className="text-[#101C32]/30">/</span>
-            <span>Journal Vol. 01</span>
-          </div>
-
-          <div className="flex items-center gap-4 sm:gap-6">
-            <span className="inline-flex items-center gap-1.5 text-[#101C32]">
-              <MapPin className="w-3.5 h-3.5 text-[#315FEA]" />
-              <span>Kozhikode, Kerala</span>
-            </span>
-            <span className="hidden xs:inline-flex items-center gap-1.5 text-[#101C32]">
-              <Clock className="w-3.5 h-3.5 text-[#315FEA]" />
-              <span>Trading Days Only</span>
-            </span>
-          </div>
-        </div>
-
         {/* Hero Asymmetric Composition */}
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-10 lg:gap-8 items-center">
           {/* Left Column: Expressive Typography & Positioning */}
