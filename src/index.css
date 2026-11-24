@@ -1,0 +1,306 @@
+@import "tailwindcss";
+
+@theme {
+  --font-heading: 'Sora', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+  --font-body: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+
+  --color-midnight: #101C32;
+  --color-deepink: #17263D;
+  --color-cobalt: #315FEA;
+  --color-cobalt-dark: #2448be;
+  --color-cobalt-light: #4f79fa;
+  --color-porcelain: #F5F4EF;
+  --color-porcelain-light: #FAF9F6;
+  --color-porcelain-dark: #E8E6DC;
+  --color-mist: #DCE5F1;
+  --color-slate: #778397;
+  --color-slate-light: #9BA6B8;
+  --color-slate-dark: #4A566A;
+}
+
+:root, [data-theme="cobalt"] {
+  --theme-midnight: #101C32;
+  --theme-deepink: #17263D;
+  --theme-accent: #315FEA;
+  --theme-accent-hover: #2448be;
+  --theme-accent-light: rgba(49, 95, 234, 0.12);
+  --theme-porcelain: #F5F4EF;
+  --theme-mist: #DCE5F1;
+  --theme-slate: #778397;
+}
+
+[data-theme="emerald"] {
+  --theme-midnight: #0B1B14;
+  --theme-deepink: #122A20;
+  --theme-accent: #0D8253;
+  --theme-accent-hover: #0A6842;
+  --theme-accent-light: rgba(13, 130, 83, 0.12);
+  --theme-porcelain: #F3F6F4;
+  --theme-mist: #D0E0D6;
+  --theme-slate: #5F7369;
+}
+
+[data-theme="amber"] {
+  --theme-midnight: #1A1512;
+  --theme-deepink: #27201B;
+  --theme-accent: #C2781D;
+  --theme-accent-hover: #A56212;
+  --theme-accent-light: rgba(194, 120, 29, 0.12);
+  --theme-porcelain: #F6F3EC;
+  --theme-mist: #E8E0D1;
+  --theme-slate: #7A7065;
+}
+
+@layer base {
+  html {
+    scroll-behavior: smooth;
+    font-feature-settings: "cv02", "cv03", "cv04", "cv11";
+  }
+
+  body {
+    font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+    background-color: var(--theme-porcelain);
+    color: var(--theme-midnight);
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    overflow-x: hidden;
+  }
+
+  h1, h2, h3, h4, h5, h6 {
+    font-family: 'Sora', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+    letter-spacing: -0.02em;
+    font-weight: 600;
+  }
+}
+
+/* Custom Editorial Polish Utilities */
+.font-heading {
+  font-family: 'Sora', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+}
+
+.font-body {
+  font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+}
+
+/* Hairline Swiss Editorial Grid Borders */
+.border-editorial {
+  border-color: rgba(16, 28, 50, 0.12);
+}
+
+.border-editorial-dark {
+  border-color: rgba(220, 229, 241, 0.15);
+}
+
+.bg-porcelain-subtle {
+  background-color: var(--theme-porcelain);
+}
+
+.bg-midnight-section {
+  background-color: var(--theme-midnight);
+}
+
+.bg-deepink-section {
+  background-color: var(--theme-deepink);
+}
+
+/* Custom scrollbar for clean editorial reading */
+::-webkit-scrollbar {
+  width: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: var(--theme-porcelain);
+}
+
+::-webkit-scrollbar-thumb {
+  background: var(--theme-mist);
+  border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: var(--theme-slate);
+}
+
+/* =========================================================
+   DYNAMIC THEME OVERRIDES (Emerald & Amber Themes)
+   Allows seamless instant site-wide transformation without
+   modifying existing component structures.
+   ========================================================= */
+
+/* Theme: Emerald (Swiss Institutional / Forest Pine) */
+[data-theme="emerald"] body,
+[data-theme="emerald"] .bg-\[\#F5F4EF\],
+[data-theme="emerald"] .bg-\[\#f5f4ef\] {
+  background-color: #F3F6F4 !important;
+}
+
+[data-theme="emerald"] .bg-porcelain-subtle {
+  background-color: #F3F6F4 !important;
+}
+
+[data-theme="emerald"] .bg-\[\#101C32\],
+[data-theme="emerald"] .bg-\[\#101c32\] {
+  background-color: #0B1B14 !important;
+}
+
+[data-theme="emerald"] .bg-midnight-section {
+  background-color: #0B1B14 !important;
+}
+
+[data-theme="emerald"] .bg-\[\#17263D\],
+[data-theme="emerald"] .bg-\[\#17263d\] {
+  background-color: #122A20 !important;
+}
+
+[data-theme="emerald"] .bg-deepink-section {
+  background-color: #122A20 !important;
+}
+
+[data-theme="emerald"] .bg-\[\#315FEA\],
+[data-theme="emerald"] .bg-\[\#315fea\] {
+  background-color: #0D8253 !important;
+}
+
+[data-theme="emerald"] .text-\[\#101C32\],
+[data-theme="emerald"] .text-\[\#101c32\] {
+  color: #0B1B14 !important;
+}
+
+[data-theme="emerald"] .text-\[\#315FEA\],
+[data-theme="emerald"] .text-\[\#315fea\] {
+  color: #0D8253 !important;
+}
+
+[data-theme="emerald"] .border-\[\#315FEA\],
+[data-theme="emerald"] .border-\[\#315fea\] {
+  border-color: #0D8253 !important;
+}
+
+[data-theme="emerald"] .border-\[\#101C32\],
+[data-theme="emerald"] .border-\[\#101c32\] {
+  border-color: #0B1B14 !important;
+}
+
+[data-theme="emerald"] .border-\[\#17263D\],
+[data-theme="emerald"] .border-\[\#17263d\] {
+  border-color: #122A20 !important;
+}
+
+[data-theme="emerald"] .hover\:bg-\[\#254eca\]:hover,
+[data-theme="emerald"] .hover\:bg-\[\#2448be\]:hover {
+  background-color: #0A6842 !important;
+}
+
+[data-theme="emerald"] .hover\:bg-\[\#17263D\]:hover,
+[data-theme="emerald"] .hover\:bg-\[\#17263d\]:hover {
+  background-color: #163628 !important;
+}
+
+[data-theme="emerald"] [class*="bg-[#315FEA]/"],
+[data-theme="emerald"] [class*="bg-[#315fea]/"] {
+  background-color: rgba(13, 130, 83, 0.12) !important;
+}
+
+[data-theme="emerald"] [class*="border-[#315FEA]/"],
+[data-theme="emerald"] [class*="border-[#315fea]/"] {
+  border-color: rgba(13, 130, 83, 0.25) !important;
+}
+
+[data-theme="emerald"] [class*="text-[#315FEA]/"],
+[data-theme="emerald"] [class*="text-[#315fea]/"] {
+  color: rgba(13, 130, 83, 0.9) !important;
+}
+
+[data-theme="emerald"] [class*="focus\:ring-[#315FEA]"],
+[data-theme="emerald"] [class*="focus\:ring-\[#315fea\]"] {
+  --tw-ring-color: rgba(13, 130, 83, 0.4) !important;
+}
+
+/* Theme: Amber (Oxford Heritage / Imperial Bronze) */
+[data-theme="amber"] body,
+[data-theme="amber"] .bg-\[\#F5F4EF\],
+[data-theme="amber"] .bg-\[\#f5f4ef\] {
+  background-color: #F6F3EC !important;
+}
+
+[data-theme="amber"] .bg-porcelain-subtle {
+  background-color: #F6F3EC !important;
+}
+
+[data-theme="amber"] .bg-\[\#101C32\],
+[data-theme="amber"] .bg-\[\#101c32\] {
+  background-color: #1A1512 !important;
+}
+
+[data-theme="amber"] .bg-midnight-section {
+  background-color: #1A1512 !important;
+}
+
+[data-theme="amber"] .bg-\[\#17263D\],
+[data-theme="amber"] .bg-\[\#17263d\] {
+  background-color: #27201B !important;
+}
+
+[data-theme="amber"] .bg-deepink-section {
+  background-color: #27201B !important;
+}
+
+[data-theme="amber"] .bg-\[\#315FEA\],
+[data-theme="amber"] .bg-\[\#315fea\] {
+  background-color: #C2781D !important;
+}
+
+[data-theme="amber"] .text-\[\#101C32\],
+[data-theme="amber"] .text-\[\#101c32\] {
+  color: #1A1512 !important;
+}
+
+[data-theme="amber"] .text-\[\#315FEA\],
+[data-theme="amber"] .text-\[\#315fea\] {
+  color: #C2781D !important;
+}
+
+[data-theme="amber"] .border-\[\#315FEA\],
+[data-theme="amber"] .border-\[\#315fea\] {
+  border-color: #C2781D !important;
+}
+
+[data-theme="amber"] .border-\[\#101C32\],
+[data-theme="amber"] .border-\[\#101c32\] {
+  border-color: #1A1512 !important;
+}
+
+[data-theme="amber"] .border-\[\#17263D\],
+[data-theme="amber"] .border-\[\#17263d\] {
+  border-color: #27201B !important;
+}
+
+[data-theme="amber"] .hover\:bg-\[\#254eca\]:hover,
+[data-theme="amber"] .hover\:bg-\[\#2448be\]:hover {
+  background-color: #A56212 !important;
+}
+
+[data-theme="amber"] .hover\:bg-\[\#17263D\]:hover,
+[data-theme="amber"] .hover\:bg-\[\#17263d\]:hover {
+  background-color: #352B24 !important;
+}
+
+[data-theme="amber"] [class*="bg-[#315FEA]/"],
+[data-theme="amber"] [class*="bg-[#315fea]/"] {
+  background-color: rgba(194, 120, 29, 0.12) !important;
+}
+
+[data-theme="amber"] [class*="border-[#315FEA]/"],
+[data-theme="amber"] [class*="border-[#315fea]/"] {
+  border-color: rgba(194, 120, 29, 0.25) !important;
+}
+
+[data-theme="amber"] [class*="text-[#315FEA]/"],
+[data-theme="amber"] [class*="text-[#315fea]/"] {
+  color: rgba(194, 120, 29, 0.9) !important;
+}
+
+[data-theme="amber"] [class*="focus\:ring-[#315FEA]"],
+[data-theme="amber"] [class*="focus\:ring-\[#315fea\]"] {
+  --tw-ring-color: rgba(194, 120, 29, 0.4) !important;
+}
