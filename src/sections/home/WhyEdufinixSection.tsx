@@ -1,13 +1,61 @@
-import React from 'react';
+import React, { useRef } from 'react';
 import { SectionHeader } from '../../components/common/SectionHeader';
 import { ShieldAlert, Sparkles, MessageCircle, Users, Activity, BarChart3, HelpCircle } from 'lucide-react';
+import { gsap } from 'gsap';
+import { ScrollTrigger } from 'gsap/ScrollTrigger';
+import { useGSAP } from '@gsap/react';
+
+gsap.registerPlugin(ScrollTrigger, useGSAP);
 
 export const WhyEdufinixSection: React.FC = () => {
+  const containerRef = useRef<HTMLElement>(null);
+  const headerRef = useRef<HTMLDivElement>(null);
+  const gridRef = useRef<HTMLDivElement>(null);
+
+  useGSAP(
+    () => {
+      if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+        return;
+      }
+
+      // Animate header
+      gsap.from(headerRef.current, {
+        scrollTrigger: {
+          trigger: headerRef.current,
+          start: 'top 85%',
+          toggleActions: 'play none none none',
+        },
+        opacity: 0,
+        y: 25,
+        duration: 0.7,
+        ease: 'power3.out',
+      });
+
+      // Animate grid cards with stagger
+      if (gridRef.current) {
+        const cards = gridRef.current.children;
+        gsap.from(cards, {
+          scrollTrigger: {
+            trigger: gridRef.current,
+            start: 'top 80%',
+            toggleActions: 'play none none none',
+          },
+          opacity: 0,
+          y: 40,
+          stagger: 0.12,
+          duration: 0.8,
+          ease: 'power3.out',
+        });
+      }
+    },
+    { scope: containerRef }
+  );
+
   return (
-    <section className="py-14 sm:py-20 lg:py-28 bg-[#F5F4EF] border-b border-[#101C32]/10 relative">
+    <section ref={containerRef} className="py-14 sm:py-20 lg:py-28 bg-[#F5F4EF] border-b border-[#101C32]/10 relative overflow-hidden">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         {/* Section Header */}
-        <div className="flex flex-col md:flex-row md:items-end justify-between gap-6 pb-10 sm:pb-14 border-b border-[#101C32]/10">
+        <div ref={headerRef} className="flex flex-col md:flex-row md:items-end justify-between gap-6 pb-10 sm:pb-14 border-b border-[#101C32]/10">
           <SectionHeader
             index="02"
             tagline="Why Edufinix"
@@ -21,7 +69,7 @@ export const WhyEdufinixSection: React.FC = () => {
         </div>
 
         {/* Asymmetric Editorial Grid */}
-        <div className="grid grid-cols-1 md:grid-cols-12 gap-5 sm:gap-6 pt-8 sm:pt-10">
+        <div ref={gridRef} className="grid grid-cols-1 md:grid-cols-12 gap-5 sm:gap-6 pt-8 sm:pt-10">
           {/* Feature 01 & 02: Wide Leading Spread */}
           <div className="md:col-span-12 lg:col-span-8 p-6 sm:p-8 lg:p-10 rounded-2xl sm:rounded-3xl bg-white border border-[#101C32]/10 shadow-sm relative overflow-hidden interactive-card">
             <div className="flex flex-wrap items-center justify-between gap-3 mb-6 sm:mb-8">
@@ -80,7 +128,6 @@ export const WhyEdufinixSection: React.FC = () => {
 
           {/* Feature 03 & 07: Dark Impact Tile */}
           <div className="md:col-span-12 lg:col-span-4 p-6 sm:p-8 lg:p-10 rounded-2xl sm:rounded-3xl bg-[#0D1728] text-white border border-[#1E2E48] shadow-xl flex flex-col justify-between interactive-card-dark relative overflow-hidden">
-            {/* Background subtle radial glow */}
             <div
               className="absolute -top-12 -right-12 w-48 h-48 rounded-full pointer-events-none opacity-20"
               style={{

@@ -1,9 +1,14 @@
-import React from 'react';
+import React, { useRef } from 'react';
 import { Button } from '../components/common/Button';
 import { BRAND_INFO } from '../data/brand';
 import { IMAGES } from '../data/assets';
 import { Compass, Eye, ShieldCheck, MapPin, CheckCircle } from 'lucide-react';
 import { usePageMetadata } from '../hooks/usePageMetadata';
+import { gsap } from 'gsap';
+import { ScrollTrigger } from 'gsap/ScrollTrigger';
+import { useGSAP } from '@gsap/react';
+
+gsap.registerPlugin(ScrollTrigger, useGSAP);
 
 export const AboutPage: React.FC = () => {
   usePageMetadata(
@@ -11,8 +16,36 @@ export const AboutPage: React.FC = () => {
     'Edufinix Trading Academy is a skill-oriented financial education institute dedicated to practical Forex market training, technical analysis, risk management and market strategies in Kozhikode, Kerala.'
   );
 
+  const containerRef = useRef<HTMLDivElement>(null);
+  const statsRef = useRef<HTMLDivElement>(null);
+
+  useGSAP(
+    () => {
+      if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+        return;
+      }
+
+      if (statsRef.current) {
+        gsap.from(statsRef.current.children, {
+          scrollTrigger: {
+            trigger: statsRef.current,
+            start: 'top 85%',
+            toggleActions: 'play none none none',
+          },
+          opacity: 0,
+          y: 25,
+          scale: 0.95,
+          stagger: 0.12,
+          duration: 0.7,
+          ease: 'power3.out',
+        });
+      }
+    },
+    { scope: containerRef }
+  );
+
   return (
-    <div className="flex flex-col">
+    <div ref={containerRef} className="flex flex-col">
       {/* Editorial Page Header */}
       <section className="py-12 sm:py-16 lg:py-24 bg-[#F5F4EF] border-b border-[#101C32]/10 relative">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -32,7 +65,7 @@ export const AboutPage: React.FC = () => {
             </p>
 
             {/* Institutional Numbers Banner */}
-            <div className="pt-6 sm:pt-8 grid grid-cols-2 md:grid-cols-4 gap-3 sm:gap-4">
+            <div ref={statsRef} className="pt-6 sm:pt-8 grid grid-cols-2 md:grid-cols-4 gap-3 sm:gap-4">
               <div className="p-4 rounded-xl bg-white border border-[#101C32]/10 shadow-2xs interactive-card">
                 <span className="font-mono text-2xl sm:text-3xl font-bold text-[#315FEA] block">100%</span>
                 <span className="font-heading text-xs font-semibold text-[#101C32] block mt-0.5">Offline Practical Focus</span>

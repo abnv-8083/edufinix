@@ -1,19 +1,80 @@
-import React, { useState } from 'react';
+import React, { useState, useRef } from 'react';
 import { Link } from 'react-router-dom';
 import { SectionHeader } from '../../components/common/SectionHeader';
 import { Button } from '../../components/common/Button';
 import { CURRICULUM_DATA } from '../../data/curriculum';
 import { Check, ChevronRight } from 'lucide-react';
+import { gsap } from 'gsap';
+import { ScrollTrigger } from 'gsap/ScrollTrigger';
+import { useGSAP } from '@gsap/react';
+
+gsap.registerPlugin(ScrollTrigger, useGSAP);
 
 export const CurriculumPreviewSection: React.FC = () => {
   const [activeTab, setActiveTab] = useState<number>(0);
   const activeModule = CURRICULUM_DATA[activeTab];
 
+  const containerRef = useRef<HTMLElement>(null);
+  const headerRef = useRef<HTMLDivElement>(null);
+  const tabsRef = useRef<HTMLDivElement>(null);
+  const cardRef = useRef<HTMLDivElement>(null);
+
+  useGSAP(
+    () => {
+      if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+        return;
+      }
+
+      gsap.from(headerRef.current, {
+        scrollTrigger: {
+          trigger: headerRef.current,
+          start: 'top 85%',
+          toggleActions: 'play none none none',
+        },
+        opacity: 0,
+        y: 25,
+        duration: 0.7,
+        ease: 'power3.out',
+      });
+
+      if (tabsRef.current) {
+        gsap.from(tabsRef.current.children, {
+          scrollTrigger: {
+            trigger: tabsRef.current,
+            start: 'top 85%',
+            toggleActions: 'play none none none',
+          },
+          opacity: 0,
+          y: 20,
+          stagger: 0.1,
+          duration: 0.6,
+          ease: 'power2.out',
+        });
+      }
+
+      if (cardRef.current) {
+        gsap.from(cardRef.current, {
+          scrollTrigger: {
+            trigger: cardRef.current,
+            start: 'top 85%',
+            toggleActions: 'play none none none',
+          },
+          opacity: 0,
+          y: 35,
+          scale: 0.98,
+          duration: 0.8,
+          ease: 'power3.out',
+        });
+      }
+    },
+    { scope: containerRef }
+  );
+
   return (
-    <section className="py-14 sm:py-20 lg:py-28 bg-[#F5F4EF] border-b border-[#101C32]/10">
+    <section ref={containerRef} className="py-14 sm:py-20 lg:py-28 bg-[#F5F4EF] border-b border-[#101C32]/10 relative overflow-hidden">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         {/* Section Header */}
-        <div className="flex flex-col md:flex-row md:items-end justify-between gap-6 pb-10 sm:pb-12 border-b border-[#101C32]/10">
+        <div ref={headerRef} className="flex flex-col md:flex-row md:items-end justify-between gap-6 pb-10 sm:pb-12 border-b border-[#101C32]/10">
           <SectionHeader
             index="04"
             tagline="Academic Syllabus"
@@ -27,8 +88,8 @@ export const CurriculumPreviewSection: React.FC = () => {
           </div>
         </div>
 
-        {/* Category Navigation Pills - 1 col on mobile, 2 on small tablet, 4 on desktop */}
-        <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-2.5 pt-6 sm:pt-8 mb-6 sm:mb-8">
+        {/* Category Navigation Pills */}
+        <div ref={tabsRef} className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-2.5 pt-6 sm:pt-8 mb-6 sm:mb-8">
           {CURRICULUM_DATA.map((module, idx) => (
             <button
               key={module.id}
@@ -50,7 +111,7 @@ export const CurriculumPreviewSection: React.FC = () => {
         </div>
 
         {/* Detailed Module Display Card */}
-        <div className="bg-white rounded-2xl border border-[#101C32]/10 p-5 sm:p-8 lg:p-10 shadow-xs">
+        <div ref={cardRef} className="bg-white rounded-2xl sm:rounded-3xl border border-[#101C32]/10 p-5 sm:p-8 lg:p-10 shadow-sm interactive-card">
           <div className="flex flex-col lg:flex-row lg:items-center justify-between pb-6 sm:pb-8 mb-6 sm:mb-8 border-b border-[#101C32]/10 gap-3 sm:gap-4">
             <div className="space-y-1">
               <span className="font-mono text-[11px] sm:text-xs text-[#315FEA] uppercase tracking-widest font-semibold">

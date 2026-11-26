@@ -4,6 +4,7 @@ import { Footer } from '../components/layout/Footer';
 import { ScrollToTop } from '../components/common/ScrollToTop';
 import { FloatingWhatsApp } from '../components/common/FloatingWhatsApp';
 import { ThemeSwitcher } from '../components/common/ThemeSwitcher';
+import { ScrollProgressBar } from '../components/common/ScrollProgressBar';
 
 interface MainLayoutProps {
   children: React.ReactNode;
@@ -12,6 +13,7 @@ interface MainLayoutProps {
 export const MainLayout: React.FC<MainLayoutProps> = ({ children }) => {
   return (
     <div className="flex flex-col min-h-screen bg-[#F5F4EF] text-[#101C32] transition-colors duration-300">
+      <ScrollProgressBar />
       <ScrollToTop />
       <Navbar />
       <main className="flex-grow pt-28 sm:pt-32">

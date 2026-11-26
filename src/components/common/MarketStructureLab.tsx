@@ -1,5 +1,10 @@
-import React, { useState } from 'react';
+import React, { useState, useRef } from 'react';
 import { Layers, ShieldCheck, Zap, Info, Activity } from 'lucide-react';
+import { gsap } from 'gsap';
+import { ScrollTrigger } from 'gsap/ScrollTrigger';
+import { useGSAP } from '@gsap/react';
+
+gsap.registerPlugin(ScrollTrigger, useGSAP);
 
 type ConceptId = 'order-block' | 'fvg' | 'liquidity-sweep' | 'risk-reward';
 
@@ -86,8 +91,32 @@ export const MarketStructureLab: React.FC = () => {
   const [selectedConcept, setSelectedConcept] = useState<ConceptId>('order-block');
   const activeData = CONCEPTS.find((c) => c.id === selectedConcept)!;
 
+  const containerRef = useRef<HTMLDivElement>(null);
+
+  useGSAP(
+    () => {
+      if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+        return;
+      }
+
+      gsap.from(containerRef.current, {
+        scrollTrigger: {
+          trigger: containerRef.current,
+          start: 'top 85%',
+          toggleActions: 'play none none none',
+        },
+        opacity: 0,
+        y: 45,
+        scale: 0.97,
+        duration: 0.85,
+        ease: 'power3.out',
+      });
+    },
+    { scope: containerRef }
+  );
+
   return (
-    <div className="w-full rounded-2xl sm:rounded-3xl bg-[#0D1728] text-white border border-[#1E2E48] overflow-hidden shadow-2xl">
+    <div ref={containerRef} className="w-full rounded-2xl sm:rounded-3xl bg-[#0D1728] text-white border border-[#1E2E48] overflow-hidden shadow-2xl">
       {/* Terminal Title Bar */}
       <div className="flex flex-wrap items-center justify-between gap-3 px-4 sm:px-6 py-3.5 bg-[#09111F] border-b border-[#1E2E48]">
         <div className="flex items-center gap-3">

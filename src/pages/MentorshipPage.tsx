@@ -1,8 +1,13 @@
-import React from 'react';
+import React, { useRef } from 'react';
 import { Button } from '../components/common/Button';
 import { IMAGES } from '../data/assets';
 import { Activity, MessageCircle, Users, Shield, Heart, CheckCircle2 } from 'lucide-react';
 import { usePageMetadata } from '../hooks/usePageMetadata';
+import { gsap } from 'gsap';
+import { ScrollTrigger } from 'gsap/ScrollTrigger';
+import { useGSAP } from '@gsap/react';
+
+gsap.registerPlugin(ScrollTrigger, useGSAP);
 
 export const MentorshipPage: React.FC = () => {
   usePageMetadata(
@@ -10,8 +15,35 @@ export const MentorshipPage: React.FC = () => {
     'Continuous 24-hour mentor support, lifelong community, and the signature 2-day luxury resort camping retreat for psychological resilience.'
   );
 
+  const containerRef = useRef<HTMLDivElement>(null);
+  const pillarsRef = useRef<HTMLDivElement>(null);
+
+  useGSAP(
+    () => {
+      if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+        return;
+      }
+
+      if (pillarsRef.current) {
+        gsap.from(pillarsRef.current.children, {
+          scrollTrigger: {
+            trigger: pillarsRef.current,
+            start: 'top 85%',
+            toggleActions: 'play none none none',
+          },
+          opacity: 0,
+          y: 35,
+          stagger: 0.15,
+          duration: 0.8,
+          ease: 'power3.out',
+        });
+      }
+    },
+    { scope: containerRef }
+  );
+
   return (
-    <div className="flex flex-col">
+    <div ref={containerRef} className="flex flex-col">
       {/* Editorial Header */}
       <section className="py-12 sm:py-16 lg:py-24 bg-[#F5F4EF] border-b border-[#101C32]/10 relative">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -46,7 +78,7 @@ export const MentorshipPage: React.FC = () => {
             </h2>
           </div>
 
-          <div className="grid grid-cols-1 lg:grid-cols-3 gap-6 sm:gap-8">
+          <div ref={pillarsRef} className="grid grid-cols-1 lg:grid-cols-3 gap-6 sm:gap-8">
             
             {/* Pillar 1: Live Market Learning */}
             <div className="p-6 sm:p-8 rounded-2xl bg-[#F5F4EF] border border-[#101C32]/10 flex flex-col justify-between space-y-5 sm:space-y-6 interactive-card shadow-2xs">

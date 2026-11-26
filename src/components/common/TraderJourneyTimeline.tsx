@@ -1,5 +1,10 @@
-import React, { useState } from 'react';
+import React, { useState, useRef } from 'react';
 import { CheckCircle2, Compass } from 'lucide-react';
+import { gsap } from 'gsap';
+import { ScrollTrigger } from 'gsap/ScrollTrigger';
+import { useGSAP } from '@gsap/react';
+
+gsap.registerPlugin(ScrollTrigger, useGSAP);
 
 interface Stage {
   step: string;
@@ -59,10 +64,65 @@ export const TraderJourneyTimeline: React.FC = () => {
   const [activeStep, setActiveStep] = useState<number>(0);
   const currentStage = STAGES[activeStep];
 
+  const containerRef = useRef<HTMLDivElement>(null);
+  const headerRef = useRef<HTMLDivElement>(null);
+  const stepsBarRef = useRef<HTMLDivElement>(null);
+  const detailsCardRef = useRef<HTMLDivElement>(null);
+
+  useGSAP(
+    () => {
+      if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+        return;
+      }
+
+      gsap.from(headerRef.current, {
+        scrollTrigger: {
+          trigger: headerRef.current,
+          start: 'top 85%',
+          toggleActions: 'play none none none',
+        },
+        opacity: 0,
+        y: 25,
+        duration: 0.7,
+        ease: 'power3.out',
+      });
+
+      if (stepsBarRef.current) {
+        gsap.from(stepsBarRef.current.children, {
+          scrollTrigger: {
+            trigger: stepsBarRef.current,
+            start: 'top 85%',
+            toggleActions: 'play none none none',
+          },
+          opacity: 0,
+          y: 25,
+          stagger: 0.1,
+          duration: 0.65,
+          ease: 'power2.out',
+        });
+      }
+
+      if (detailsCardRef.current) {
+        gsap.from(detailsCardRef.current, {
+          scrollTrigger: {
+            trigger: detailsCardRef.current,
+            start: 'top 85%',
+            toggleActions: 'play none none none',
+          },
+          opacity: 0,
+          y: 35,
+          duration: 0.8,
+          ease: 'power3.out',
+        });
+      }
+    },
+    { scope: containerRef }
+  );
+
   return (
-    <div className="w-full rounded-2xl sm:rounded-3xl bg-white border border-[#101C32]/10 p-5 sm:p-8 lg:p-10 shadow-sm">
+    <div ref={containerRef} className="w-full rounded-2xl sm:rounded-3xl bg-white border border-[#101C32]/10 p-5 sm:p-8 lg:p-10 shadow-sm">
       {/* Header */}
-      <div className="flex flex-col md:flex-row md:items-end justify-between pb-8 mb-8 border-b border-[#101C32]/10 gap-4">
+      <div ref={headerRef} className="flex flex-col md:flex-row md:items-end justify-between pb-8 mb-8 border-b border-[#101C32]/10 gap-4">
         <div className="space-y-1">
           <div className="flex items-center gap-2 text-xs font-mono uppercase tracking-[0.2em] font-semibold text-[#315FEA]">
             <Compass className="w-4 h-4" />
@@ -86,7 +146,7 @@ export const TraderJourneyTimeline: React.FC = () => {
       </div>
 
       {/* Interactive Step Navigator Bar */}
-      <div className="grid grid-cols-2 md:grid-cols-4 gap-3 mb-8">
+      <div ref={stepsBarRef} className="grid grid-cols-2 md:grid-cols-4 gap-3 mb-8">
         {STAGES.map((stage, idx) => (
           <button
             key={stage.step}
@@ -117,7 +177,7 @@ export const TraderJourneyTimeline: React.FC = () => {
       </div>
 
       {/* Active Phase Deep Dive Card */}
-      <div className="rounded-2xl bg-[#F5F4EF] border border-[#101C32]/10 p-5 sm:p-8">
+      <div ref={detailsCardRef} className="rounded-2xl bg-[#F5F4EF] border border-[#101C32]/10 p-5 sm:p-8">
         <div className="flex flex-col lg:flex-row lg:items-center justify-between pb-6 mb-6 border-b border-[#101C32]/10 gap-3">
           <div>
             <span className="text-xs font-mono uppercase tracking-widest text-[#315FEA] font-semibold block">

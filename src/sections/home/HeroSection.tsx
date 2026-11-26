@@ -4,9 +4,10 @@ import { Button } from '../../components/common/Button';
 import { IMAGES } from '../../data/assets';
 import { MarketSessionTracker } from '../../components/common/MarketSessionTracker';
 import { gsap } from 'gsap';
+import { ScrollTrigger } from 'gsap/ScrollTrigger';
 import { useGSAP } from '@gsap/react';
 
-gsap.registerPlugin(useGSAP);
+gsap.registerPlugin(ScrollTrigger, useGSAP);
 
 export const HeroSection: React.FC = () => {
   const containerRef = useRef<HTMLElement>(null);
@@ -58,6 +59,20 @@ export const HeroSection: React.FC = () => {
           },
           '-=0.6'
         );
+
+      // Scroll-driven parallax for hero card
+      if (imageCardRef.current && containerRef.current) {
+        gsap.to(imageCardRef.current, {
+          y: 35,
+          ease: 'none',
+          scrollTrigger: {
+            trigger: containerRef.current,
+            start: 'top top',
+            end: 'bottom top',
+            scrub: 1.2,
+          },
+        });
+      }
     },
     { scope: containerRef }
   );

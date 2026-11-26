@@ -1,14 +1,46 @@
-import React from 'react';
+import React, { useRef } from 'react';
 import { Button } from '../../components/common/Button';
 import { BRAND_INFO } from '../../data/brand';
 import { Clock, MapPin } from 'lucide-react';
 import { WhatsAppIcon } from '../../components/common/Icons';
+import { gsap } from 'gsap';
+import { ScrollTrigger } from 'gsap/ScrollTrigger';
+import { useGSAP } from '@gsap/react';
+
+gsap.registerPlugin(ScrollTrigger, useGSAP);
 
 export const ClosingCtaSection: React.FC = () => {
+  const containerRef = useRef<HTMLElement>(null);
+  const cardRef = useRef<HTMLDivElement>(null);
+
+  useGSAP(
+    () => {
+      if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+        return;
+      }
+
+      if (cardRef.current) {
+        gsap.from(cardRef.current, {
+          scrollTrigger: {
+            trigger: cardRef.current,
+            start: 'top 85%',
+            toggleActions: 'play none none none',
+          },
+          scale: 0.94,
+          opacity: 0,
+          y: 40,
+          duration: 0.85,
+          ease: 'power3.out',
+        });
+      }
+    },
+    { scope: containerRef }
+  );
+
   return (
-    <section className="py-14 sm:py-20 lg:py-28 bg-[#F5F4EF] relative">
+    <section ref={containerRef} className="py-14 sm:py-20 lg:py-28 bg-[#F5F4EF] relative overflow-hidden">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="p-6 sm:p-12 lg:p-16 rounded-3xl bg-[#101C32] text-white border border-[#17263D] shadow-2xl relative overflow-hidden">
+        <div ref={cardRef} className="p-6 sm:p-12 lg:p-16 rounded-3xl bg-[#0D1728] text-white border border-[#1E2E48] shadow-2xl relative overflow-hidden interactive-card-dark">
           
           {/* Subtle Graphic Aura */}
           <div 
@@ -20,7 +52,7 @@ export const ClosingCtaSection: React.FC = () => {
 
           <div className="relative max-w-3xl space-y-5 sm:space-y-6">
             <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-white/10 border border-white/10 text-xs font-mono text-[#DCE5F1]">
-              <span className="w-2 h-2 rounded-full bg-[#315FEA]" />
+              <span className="w-2 h-2 rounded-full bg-[#315FEA] animate-pulse" />
               <span>Next Cohort Openings • Kozhikode</span>
             </div>
 
@@ -35,7 +67,7 @@ export const ClosingCtaSection: React.FC = () => {
 
             {/* CTAs - Stack full width on mobile */}
             <div className="flex flex-col sm:flex-row items-stretch sm:items-center gap-3 sm:gap-4 pt-2 sm:pt-4">
-              <Button to="/contact" variant="primary" size="lg" showArrow={true} className="w-full sm:w-auto">
+              <Button to="/contact" variant="primary" size="lg" showArrow={true} className="w-full sm:w-auto shadow-md">
                 Enquire About Admission
               </Button>
 
